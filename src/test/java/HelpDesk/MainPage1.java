@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.IOException;
-
-public class MainPage extends BaseSeleniumPage {
+public class MainPage1 extends BaseSeleniumPage {
 
     @FindBy(xpath = "//select[@id = 'id_queue']")
     private WebElement queueList;
@@ -33,15 +31,25 @@ public class MainPage extends BaseSeleniumPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement sendticket;
 
+    @FindBy(xpath = "//input[@name = 'ticket']")
+    private WebElement ticketId;
 
-    public MainPage() throws IOException {
-        System.getProperties().load(ClassLoader.getSystemResourceAsStream("application.properties"));
-        String URL = System.getProperty("url");
-        driver.get(URL);
+    @FindBy(xpath = "//input[@name = 'email']")
+    private WebElement ticketEmail;
+
+    @FindBy(xpath = "//input[@value = 'Просмотреть тикет']")
+    private WebElement showTicket;
+
+    @FindBy(xpath = "//form")
+    private WebElement errorText;
+
+
+    public MainPage1(){
+        driver.get(ConfigProvider.URL);
         PageFactory.initElements(driver, this);
     }
 
-    public MainPage createTicket(String titleValue, String bodyValue, String emailValue){
+    public MainPage1 createTicket(String titleValue, String bodyValue, String emailValue){
         queueList.click();
         queueValue.click();
         title.sendKeys(titleValue);
@@ -52,4 +60,12 @@ public class MainPage extends BaseSeleniumPage {
         sendticket.click();
         return this;
     }
+
+    public MainPage1 checkTicket(String ticketIdValue, String ticketEmailValue){
+        ticketId.sendKeys(ticketIdValue);
+        ticketEmail.sendKeys(ticketEmailValue);
+        showTicket.click();
+        return this;
+    }
 }
+
