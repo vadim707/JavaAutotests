@@ -35,7 +35,7 @@ public class HelpDeskTest extends BaseSeleniumTest {
     }
 
     @Test
-    public void checkNonexistentTicket(){
+    public void checkNonExistentTicket(){
         String ticketId = Integer.toString(ConfigProvider.TICKETID);
         String ticketEmail = ConfigProvider.EMAIL;
         MainPage1 mainPage1 = new MainPage1();
